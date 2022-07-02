@@ -6,9 +6,15 @@ void main() {
   ));
 }
 
-class Card extends StatelessWidget {
+class Card extends StatefulWidget {
   const Card({Key? key}) : super(key: key);
 
+  @override
+  State<Card> createState() => _CardState();
+}
+
+class _CardState extends State<Card> {
+  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +62,8 @@ class Card extends StatelessWidget {
             height: 5,
           ),
           Text(
-            //get ashraf's year
-            (DateTime.now().year - 2001).toString(),
+            //get ashraf's age
+            '$counter',
             style: TextStyle(
                 color: Colors.amber[400],
                 fontSize: 30,
@@ -81,6 +87,15 @@ class Card extends StatelessWidget {
                     color: Colors.grey[200], fontSize: 18, letterSpacing: 1),
               )
             ],
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          FloatingActionButton(
+            onPressed: () => setState(() {
+              counter += 1;
+            }),
+            child: Icon(Icons.add),
           )
         ]),
       ),
